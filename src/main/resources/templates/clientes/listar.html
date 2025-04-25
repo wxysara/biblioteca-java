@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+    <h1 class="text-3xl font-bold mb-4">Lista de Clientes</h1>
+    <a href="/clientes/novo" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Novo Cliente</a>
+    <a href="/" class="inline-block bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
+        Voltar
+    </a>
+    <table class="table-auto w-full mt-4 bg-white shadow-md rounded">
+        <thead>
+            <tr class="bg-green-100 text-green-800">
+                <th class="px-4 py-2 text-left">Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td class="border px-4 py-2" th:text="${cliente.nome}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

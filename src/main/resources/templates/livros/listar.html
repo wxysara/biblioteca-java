@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Livros</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-green-600 text-center">Livros</h1>
+    <a href="./novo" class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Adicionar Livro</a>
+    <a href="/" class="inline-block bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
+        Voltar
+    </a>
+
+    <div class="grid grid-cols-1 mt-4 sm:grid-cols-5 md:grid-cols-5 gap-8">
+        <div th:each="livro : ${livros}" class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition flex flex-col">
+            <img 
+                th:src="${livro.urlImagem}"
+                alt="Capa do Livro"
+                class="w-full max-h-64 object-contain mx-auto mb-4 rounded" 
+            />
+
+            <h2 class="text-xl font-bold text-green-600 mb-2" th:text="${livro.titulo}">Título</h2>
+            <p class="text-gray-800" th:text="'Autor: ' + ${livro.autor}">Autor</p>
+            <p class="text-gray-600 mb-4" th:text="'Ano: ' + ${livro.anoPublicacao}">Ano</p>
+            
+            <div class="flex mt-auto gap-2">
+                <a th:href="@{'/livros/editar/' + ${livro.id}}"
+                   class="w-1/2 text-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                    Editar
+                </a>
+                <a th:href="@{'/livros/deletar/' + ${livro.id}}"
+                   class="w-1/2 text-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+                    Deletar
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Cliente</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+    <h1 class="text-3xl font-bold mb-4">Cadastrar Cliente</h1>
+    <form th:action="@{/clientes/salvar}" method="post" th:object="${cliente}" class="bg-white p-6 rounded shadow-md max-w-md">
+        <div class="mb-4">
+            <label for="nome" class="block text-sm font-medium text-gray-700">Nome</label>
+            <input type="text" id="nome" th:field="*{nome}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-500 focus:outline-none" required>
+        </div>
+        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Salvar</button>
+        <a href="/clientes" class="inline-block bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
+            Voltar
+        </a>
+    </form>
+</body>
+</html>

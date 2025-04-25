@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Empréstimo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-red-100 flex items-center justify-center">
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <h1 class="text-3xl font-bold text-green-600 mb-6 text-center">Novo Empréstimo</h1>
+
+        <form th:action="@{/emprestimos/salvar}" method="post" th:object="${emprestimo}">
+            <div class="mb-4">
+                <label for="livro" class="block text-sm font-medium text-gray-700">Livro</label>
+                <select th:field="*{livro}" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+                    <option value="">Selecione um livro</option>
+                    <option th:each="livro : ${livros}" th:value="${livro.id}" th:text="${livro.titulo}"></option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="cliente" class="block text-sm font-medium text-gray-700">Cliente</label>
+                <select th:field="*{cliente}" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+                    <option value="">Selecione um cliente</option>
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="dataEmprestimo" class="block text-sm font-medium text-gray-700">Data de Empréstimo</label>
+                <input type="date" th:field="*{dataEmprestimo}" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+            </div>
+
+            <div class="mb-4">
+                <label for="dataDevolucao" class="block text-sm font-medium text-gray-700">Data de Devolução</label>
+                <input type="date" th:field="*{dataDevolucao}" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+            </div>
+
+            <div class="flex justify-between mt-6">
+                <a href="/emprestimos" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancelar</a>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Salvar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
